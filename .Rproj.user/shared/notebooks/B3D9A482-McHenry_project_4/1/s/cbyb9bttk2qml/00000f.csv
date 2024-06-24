@@ -1,0 +1,8 @@
+"0","#| label: load data
+#| include: false
+#| echo: false
+team <- read_csv(""./Data/team_data.csv"")
+"
+"2","Error in read_csv(""./Data/team_data.csv"") : 
+  could not find function ""read_csv""
+"

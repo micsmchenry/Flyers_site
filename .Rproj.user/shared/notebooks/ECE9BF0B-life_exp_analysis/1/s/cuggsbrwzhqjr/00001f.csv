@@ -1,0 +1,9 @@
+"0","sumdat <- gapminder_unfiltered |>
+  group_by(year, country) |>
+  summarize(lifeExp = max(lifeExp)) |>
+  ungroup() |>
+  group_by(year) |>
+  filter(lifeExp == max(lifeExp)) |>
+  ungroup()
+"
+"2","`summarise()` has grouped output by 'year'. You can override using the `.groups` argument."

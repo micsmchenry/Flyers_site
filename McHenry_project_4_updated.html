@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Will the Philadelphia Flyers Fly High in 2023-2024?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="McHenry_project_4_updated_files/libs/clipboard/clipboard.min.js"></script>
+<script src="McHenry_project_4_updated_files/libs/quarto-html/quarto.js"></script>
+<script src="McHenry_project_4_updated_files/libs/quarto-html/popper.min.js"></script>
+<script src="McHenry_project_4_updated_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="McHenry_project_4_updated_files/libs/quarto-html/anchor.min.js"></script>
+<link href="McHenry_project_4_updated_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="McHenry_project_4_updated_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="McHenry_project_4_updated_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="McHenry_project_4_updated_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="McHenry_project_4_updated_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Will the Philadelphia Flyers Fly High in 2023-2024?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The Philadelphia Flyers are off to a better-than-expected start to their NHL season and are staying in playoff contention with about a third of their games behind them. I’ve been curious to explore what has driven the team’s performance this season and whether the team is actually performing well or is benefiting from some luck early on. I will be using data from <a href="https://moneypuck.com/data.htm">Moneypuck.com</a> and <a href="https://www.nhl.com/stats/">NHL.com</a> to investigate this year’s team performance and draw a few comparisons to past seasons.</p>
+<p>In a year in which the organization signaled its tolerance to forgo positive performance in favor of starting a rebuild from the ground up, things have gone surprisingly well, with the Flyers currently sitting at 11th in the league.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Team</th>
+<th style="text-align: right;">Games Played</th>
+<th style="text-align: right;">Wins</th>
+<th style="text-align: right;">Losses</th>
+<th style="text-align: right;">OTL</th>
+<th style="text-align: right;">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vegas Golden Knights</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New York Rangers</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Boston Bruins</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vancouver Canucks</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Los Angeles Kings</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colorado Avalanche</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dallas Stars</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Florida Panthers</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Winnipeg Jets</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detroit Red Wings</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Philadelphia Flyers</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Toronto Maple Leafs</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Carolina Hurricanes</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tampa Bay Lightning</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New York Islanders</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nashville Predators</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arizona Coyotes</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Jersey Devils</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">St.&nbsp;Louis Blues</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Washington Capitals</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pittsburgh Penguins</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Montreal Canadiens</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Calgary Flames</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Buffalo Sabres</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Minnesota Wild</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Seattle Kraken</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Edmonton Oilers</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Columbus Blue Jackets</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ottawa Senators</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anaheim Ducks</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">San Jose Sharks</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chicago Blackhawks</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The above standings are a typical way to compare a teams position in the league relative to others. However, this ranking system has its flaws, namely, that it does not account for games played by each team. It is not uncommon for a team to have played 3-5 more/less games than another team in the league on any given day. In this way, the standings provide a slightly warped view of team rank throughout the season, providing a more favorable ranking to teams that have played more games and have thus had greater opportunity to accumulate more points.</p>
+<p>To account for the disparity in games played for each team at this point in the season, I present an adjusted view of the league standings. A standard measure for mediocrity in the sports world is a winning percentage of 50%. Fans of the NHL follow a similar rule-of-thumb but often emphasize a 50% points percentage, because the NHL awards two points for a victory, one point for an overtime loss (OTL) and zero points for a loss in regulation. An NHL team is considered to have a points-percentage of 50% if on average they pick up one out of every two available points per game. As such, the below graphic ranks team performance based on teams exceeding or falling below a point-per-game average. This results in a ranking of teams slightly different than the NHL’s traditional standings table, which only takes into account cumulative points. The measure below is preferable in terms of accounting for the number of games each team has played.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/standings%20chart-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Even adjusting for games played, the Flyers are sitting in the middle of the pack, albeit at 13 instead of 11. Of note, they are performing above a point-per-game pace, which bodes well for continued success. As I’ve mentioned, the team is generally outperforming expectations this season by being mediocre rather than abhorrent and unwatchable, but how are they performing relative to past seasons?</p>
+<p>Let’s answer that question by comparing the number of points the Flyers have in 26 games this season compared to previous seasons and whether those seasons ended in playoff berths. Note that data is only available on Moneypuck from the 2008-2009 season onward, which restricts our range of comparison.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/season%20comparison-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The Flyers have 30 points in 26 games so far this season. That is slightly above their playoff season average of 29.625. While the team made the playoffs in years where they got off to slow starts, (2013, 2015, and 2017) in the past 15 seasons they only missed the playoffs once when they put up at least 29.625 points at this point in the season. By no means is the team lighting the league on fire, but they are putting up a solid effort against their opponents this year and as a result, have a decent opportunity to make the playoffs. Let’s take a closer look at the offensive and defensive numbers underlying the team’s performance this year.</p>
+<section id="how-many-goals-do-they-score-how-many-do-they-give-up" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-goals-do-they-score-how-many-do-they-give-up">How Many Goals Do They Score? How Many Do They Give Up?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/Goals%20Across%20Seasons-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On net, the Flyers have been outscoring their opponents a third of the way into the season. It’s been a few seasons since they’ve had a positive goal differential at this point. Shockingly, from 2013 - 2018 the Flyers had a sustained period with a negative goal differential to start the year. While their advantage in goals for is only slight at this point in the season, it is promising that the Flyers seemingly have been able to outscore some of their defensive problems, which they haven’t had the luxury of in years past.</p>
+<p>Let’s take a further look at the Flyers goal-scoring abilities this season. In particular, how many shots on goal are the Flyers taking and are they converting on their high-quality chances?</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/Goals%20For-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The above matrix provides some insight into how the team’s offense has performed in each game relative to history. The team is both putting more pucks on goal and finding the back of the net more frequently than their historical averages for the majority of their games. The right corner of the chart is where you want to live as an NHL team; frequently shooting at the net and converting many of the scoring chances into goals. Even when the Flyers have been unable to generate an average amount of shots against the other team, they’ve still been able to win their games (“Surprise” panel). Equally important are the orange dots in the “Frustrating” panel, which signify wins in which the Flyers were able to generate a great deal of offense but ultimately ran into a hot goalie and failed to convert on many of their chances. These are the type of games the Flyers used to constantly lose, but they’ve been able to win half of them this year. As for the “Boring and Sad” category, those are games that are tough to win, with few shots and few goals. The Flyers haven’t found themselves as the victor in one of those games yet, so best to stay out of the lower left category if possible.</p>
+<p>Now that we’ve taken a look at the offensive matrix, let’s look at what kind of scoring chances the Flyers are generating this year and if they are converting on both high and low-risk chances.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/High%20Danger%20Chances-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is a fairly decent spread of goals coming from low, medium, and high-danger chances this year. Somewhat surprisingly, the team has been able to generate a good chunk of goals from low-danger chances. Unfortunately, this may be the result of playing teams with poor goaltending or teams prone to making defensive gaffes. The team’s shooting percentage may be somewhat inflated as a result. Also somewhat surprising is the lack of any obvious positive association between high-danger chances and goals. Theoretically, the Flyers should be converting on more high-danger chances, and instead they have multiple high-danger chances clustered at 0 goals yielded and hardly any high-danger chances in a game yielded more than 2 goals. This, coupled with the multitude of goals scored on low-danger chances, may signify a problem down the road for the Flyers as their conversion rate on low-danger chances starts to come down.</p>
+<p>Despite my concerns about the type of goals the Flyers are scoring, it still reamins that the team are shooting and scoring at a solid pace to start the season and finding ways to win games. However, the other issue the Flyers should be looking to fix is that of consistently bad defense. Despite average-to-good goaltending in recent years, the team has had a problem giving up quality-scoring chances to other teams. Let’s see if the team has tightened up defensively this season under their second full season with new coach John Torterella.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/Goals%20Against-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>They’ve done a decent job preventing shots in most of their games this season, although they have been bailed out by their goaltending quite a few times (“Good Goaltending” panel). Importantly however, this matrix provides evidence that the team has not been able to “outscore their problems” when the defense and goaltending is not up to par. Almost all of their wins have come in the left panels of the matrix, where the team has either gotten good defense or good goaltending. Orange dots on the right would imply the offense being able to win games when the defense is substandard, and there are very few of those. About 50% of the Flyers games fall on the left side and 50% on the right side, which also indicates this team still has room for improvement when it comes to reducing scoring chances for the opposition.</p>
+<p>The best way to reduce those scoring chances while simultaneously providing a boost to your own offense is to effectively manage takeaways and giveaways in a game. Unfortunately, the Flyers have been remarkably bad at this for a team with a winning record.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/Takeaways%20and%20Giveaways%202023-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The Flyers have had more turnovers than takeaways in 16 of their 26 games. The above chart measures “Takeaways” as actual takeaways by the Flyers plus giveaways by the opposing team. “Turnovers” are measured as turnovers or giveaways by the Flyers to the opposing team. Turnovers are essentially forced errors while giveaways are largely unforced considered errors. Despite the Flyers fairly abysmal turnover differential, they are still finding ways to win games. They have won 8 of the 16 games in which they turned the puck over more often than they forced turnovers. This may be the result of turnovers in relatively harmless areas of the ice i.e.&nbsp;it is better to turn the puck over in the neutral zone than in your own defensive end. However, even if these turnovers aren’t in high-danger areas, this is a worrying and unsustainable trend that could easily cause issues for the Flyers later on in the season.</p>
+</section>
+<section id="playing-against-divisional-rivals" class="level2">
+<h2 class="anchored" data-anchor-id="playing-against-divisional-rivals">Playing Against Divisional Rivals</h2>
+<p>The importance of divisional play should not be understated. Divisional games are generally treated as 4-point games, not only does the victor pick up 2 points, they put further distance between themselves and their opponent, since their opponent now has one less opportunity to pick up those 2 points. Given that the NHL’s playoff format rewards the top 3 teams in each division with automatic playoff berths, beating divisional opponents is a must for any team with playoff aspirations.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="McHenry_project_4_updated_files/figure-html/Division%20Play-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The above chart only further highlights the importance of divisonal play. A quick comparison of this graphic and the seasonal points comparison chart I produced above shows that the Flyers points percentage against divisional rivals was well above 50% for any season in which they made the playoffs. Medicore and abysmal points percentages against other teams in their division in the past three seasons greatly contributed to consecutive years of playoff misses. This year, however, the Flyers are finding ways to pick up points in their divisional games, which has already been a key contributor to the Flyers somewhat surprising success so far this season.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Based on the data collected and displayed, my opinion is that the Flyers will continue to outperform this season’s expectations and remain in the NHL playoff race. I do not, however, believe they will qualify for the playoffs. While their 30 points through 26 games looks pretty good, their underlying metrics don’t paint a particularly rosy picture. While the Flyers goal scoring has increased this season, they are still not at a point where they can win by offensive fire power alone. This is particularly clear when looking at their conversion on high-danger scoring chances, which is not high enough. The Flyers offense is seemingly buoyed by fortunate bounces from low-danger shots, which may not always be the case when playing good teams also vying for playoff contention. Perhaps most concerning is the degree to which the Flyers turn over the puck to the other team. It is fortunate they have not already lost more games as a result of these errors and their wins despite these turnovers is likely a positive reflection of the good goaltending they’ve gotten this season. What I do think will keep the Flyers in the playoff hunt will be their performances against divisional rivals. The team has played almost half of its 26 divisional games slated for this season and has performed well, much better than the previous 2 seasons at least. If the Flyers can keep picking up points in divisional games, particulary against teams closer to them in the standings, they will continue to jockey for position in the playoff race and could even find themselves sneaking their way in.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,219 @@
+"0","#| label: load data"
+"0","#| include: false"
+"0","#| echo: false"
+"0",""
+"0","team <- read_csv(""./Data/team_data_updated.csv"")"
+"2","[1mRows: [22m[34m5915[39m [1mColumns: [22m[34m110[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m   (7): team, name, playerTeam, opposingTeam, home_or_away, position, situation
+[32mdbl[39m (103): season, gameId, gameDate, xGoalsPercentage, corsiPercentage, fenwickPercentage..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"0","NHL_paths <- list.files(""./Data/NHL"", full.names = TRUE)"
+"0","NHL_paths"
+"1"," [1]"
+"1"," ""./Data/NHL/NHL_08.csv"""
+"1"," ""./Data/NHL/NHL_09.csv"""
+"1"," ""./Data/NHL/NHL_10.csv"""
+"1","
+"
+"1"," [4]"
+"1"," ""./Data/NHL/NHL_11.csv"""
+"1"," ""./Data/NHL/NHL_12.csv"""
+"1"," ""./Data/NHL/NHL_13.csv"""
+"1","
+"
+"1"," [7]"
+"1"," ""./Data/NHL/NHL_14.csv"""
+"1"," ""./Data/NHL/NHL_15.csv"""
+"1"," ""./Data/NHL/NHL_16.csv"""
+"1","
+"
+"1","[10]"
+"1"," ""./Data/NHL/NHL_21.csv"""
+"1"," ""./Data/NHL/NHL_22.csv"""
+"1"," ""./Data/NHL/NHL_23.csv"""
+"1","
+"
+"0","nhl_summary <- map(NHL_paths, read_csv) |>"
+"0","  rbindlist() |>"
+"0","  mutate(across(GP:`FOW%`, .fns = as.numeric),"
+"0","    `Game Date` = as.Date(`Game Date`, ""%m/%d/%Y"")"
+"0","  ) |>"
+"0","  rename(gameDate = `Game Date`) |>"
+"0","  filter(!is.na(Team))"
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (3): Team, Game Date, T
+[32mdbl[39m (20): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PP%, PK%, Net PP%,..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (5): Team, Game Date, T, PK%, Net PK%
+[32mdbl[39m (18): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PP%, Net PP%, Shot..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (5): Team, Game Date, T, PK%, Net PK%
+[32mdbl[39m (18): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PP%, Net PP%, Shot..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): Team, Game Date, T, PP%, PK%, Net PP%, Net PK%
+[32mdbl[39m (16): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, Shots/GP, SA/GP, FOW%"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (5): Team, Game Date, T, PP%, Net PP%
+[32mdbl[39m (18): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PK%, Net PK%, Shot..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (3): Team, Game Date, T
+[32mdbl[39m (20): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PP%, PK%, Net PP%,..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): Team, Game Date, T, PP%, PK%, Net PP%, Net PK%
+[32mdbl[39m (16): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, Shots/GP, SA/GP, FOW%"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): Team, Game Date, T, PP%, PK%, Net PP%, Net PK%
+[32mdbl[39m (16): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, Shots/GP, SA/GP, FOW%"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): Team, Game Date, T, PP%, PK%, Net PP%, Net PK%
+[32mdbl[39m (16): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, Shots/GP, SA/GP, FOW%"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (5): Team, Game Date, T, PK%, Net PK%
+[32mdbl[39m (18): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PP%, Net PP%, Shot..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m100[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): Team, Game Date, T, PP%, PK%, Net PP%, Net PK%
+[32mdbl[39m (16): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, Shots/GP, SA/GP, FOW%"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","[1mRows: [22m[34m83[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): Team, Game Date, T, PP%, PK%, Net PP%, Net PK%
+[32mdbl[39m (16): GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, Shots/GP, SA/GP, FOW%"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"2","Warning: [38;5;232mThere were 5 warnings in `mutate()`.
+The first warning was:[39m
+[38;5;232m[36mℹ[38;5;232m In argument: `across(GP:`FOW%`, .fns = as.numeric)`.[39m
+Caused by warning:
+[33m![39m NAs introduced by coercion
+[38;5;232m[36mℹ[38;5;232m Run ]8;;ide:run:dplyr::last_dplyr_warnings()dplyr::last_dplyr_warnings()]8;; to see the 4 remaining warnings.[39m"
+"0","# Summarize data so each row is one game and add a row for points obtained"
+"0","game_all <- team |>"
+"0","  mutate(gameDate = as.Date(as.character(gameDate), format = ""%Y%m%d"")) |>"
+"0","  filter(situation == ""all"") |>"
+"0","  group_by(gameDate) |>"
+"0","  summarize(across(team:scoreFlurryAdjustedTotalShotCreditAgainst)) |>"
+"0","  ungroup() |>"
+"0","  left_join(nhl_summary, by = ""gameDate"")"
+"0",""
+"0","game_all_season <- game_all |>"
+"0","  mutate(season_num = case_when("
+"0","    gameDate >= as.Date(""2008-09-15"") & gameDate <= as.Date(""2009-08-15"") ~ 1,"
+"0","    gameDate >= as.Date(""2009-09-15"") & gameDate <= as.Date(""2010-08-15"") ~ 2,"
+"0","    gameDate >= as.Date(""2010-09-15"") & gameDate <= as.Date(""2011-08-15"") ~ 3,"
+"0","    gameDate >= as.Date(""2011-09-15"") & gameDate <= as.Date(""2012-08-15"") ~ 4,"
+"0","    gameDate >= as.Date(""2012-09-15"") & gameDate <= as.Date(""2013-08-15"") ~ 5,"
+"0","    gameDate >= as.Date(""2013-09-15"") & gameDate <= as.Date(""2014-08-15"") ~ 6,"
+"0","    gameDate >= as.Date(""2014-09-15"") & gameDate <= as.Date(""2015-08-15"") ~ 7,"
+"0","    gameDate >= as.Date(""2015-09-15"") & gameDate <= as.Date(""2016-08-15"") ~ 8,"
+"0","    gameDate >= as.Date(""2016-09-15"") & gameDate <= as.Date(""2017-08-15"") ~ 9,"
+"0","    gameDate >= as.Date(""2017-09-15"") & gameDate <= as.Date(""2018-08-15"") ~ 10,"
+"0","    gameDate >= as.Date(""2018-09-15"") & gameDate <= as.Date(""2019-08-15"") ~ 11,"
+"0","    gameDate >= as.Date(""2019-09-15"") & gameDate <= as.Date(""2020-08-15"") ~ 12,"
+"0","    gameDate >= as.Date(""2020-09-15"") & gameDate <= as.Date(""2021-08-15"") ~ 13,"
+"0","    gameDate >= as.Date(""2021-09-15"") & gameDate <= as.Date(""2022-08-15"") ~ 14,"
+"0","    gameDate >= as.Date(""2022-09-15"") & gameDate <= as.Date(""2023-08-15"") ~ 15,"
+"0","    gameDate >= as.Date(""2023-09-15"") & gameDate <= as.Date(""2024-08-15"") ~ 16"
+"0","  )) |>"
+"0","  mutate(playoffs = case_when("
+"0","    season_num == 1 ~ ""Made Playoffs"","
+"0","    season_num == 2 ~ ""Made Playoffs"","
+"0","    season_num == 3 ~ ""Made Playoffs"","
+"0","    season_num == 4 ~ ""Made Playoffs"","
+"0","    season_num == 5 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 6 ~ ""Made Playoffs"","
+"0","    season_num == 7 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 8 ~ ""Made Playoffs"","
+"0","    season_num == 9 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 10 ~ ""Made Playoffs"","
+"0","    season_num == 11 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 12 ~ ""Made Playoffs"","
+"0","    season_num == 13 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 14 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 15 ~ ""Did Not Make Playoffs"","
+"0","    season_num == 16 ~ ""TBD"""
+"0","  )) |>"
+"0","  group_by(season_num) |>"
+"0","  mutate("
+"0","    games_played = cumsum(GP),"
+"0","    points = cumsum(P),"
+"0","    year = year(gameDate)"
+"0","  )"
+"0",""
+"0","standings <- game_all_season |>"
+"0","  select(gameDate, P, GP, season_num, playoffs, games_played, points, year)"
+"0",""
+"0","recent_season <- standings |>"
+"0","  filter(season_num == max(standings$season_num))"
+"0",""
+"0","curr_games <- max(recent_season$games_played)"
+"0","curr_points <- max(recent_season$points)"
+"0",""
+"0","league_standings <- read_csv(""./Data/Standings_NHL/Standings.csv"")"
+"2","[1mRows: [22m[34m32[39m [1mColumns: [22m[34m23[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (2): Team, T
+[32mdbl[39m (21): Season, GP, W, L, OT, P, P%, RW, ROW, S/O Win, GF, GA, GF/GP, GA/GP, PP%, PK%, ..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

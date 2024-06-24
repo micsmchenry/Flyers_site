@@ -1,0 +1,17 @@
+"0","#| label: standings table"
+"0","#| include: true"
+"0","#| echo: false"
+"0",""
+"0","knitr::kable(league_standings |>"
+"0","      mutate(Wins = W,"
+"0","             Losses = L,"
+"0","             OTL = OT,"
+"0","             Points = P,"
+"0","             `Games Played` = GP) |>"
+"0","      select(Team, `Games Played`, Wins, Losses, OTL, Points))"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"

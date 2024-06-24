@@ -1,0 +1,195 @@
+---
+title: "DATA-413/613 HW 01"
+author: "Mike McHenry"
+number-sections: true
+code-line-numbers: true
+code-overflow: wrap
+code-link: true
+format:
+  html:
+    toc-depth: 3
+    embed-resources: true
+---
+
+# Admin Elements {.unnumbered}
+
+# Canvas Picture, Syllabus, and Student Info
+
+Review the Syllabus on Canvas and answer the following questions:
+
+I, *Mike McHenry* have:
+
+1.  Ensured my Canvas Profile has a photo of me (head and shoulders).
+- Yes
+
+2.  Reviewed the syllabus and the associated policies on the following date: ***1/15/2024***.
+
+3.  Reviewed the American University policies on academic integrity and I agree to comply with them and the additional guidance in the syllabus for this course.
+- Yes
+
+4.  Confirmed my information in the Student Info spreadsheet on Canvas Collaborations is correct.
+- No, I can view the sheet but am unable to edit.
+
+# Analysis Elements {.unnumbered}
+
+# College Scorecard
+
+The data folder contains "college_scorecard_extract_2023-04-25_UG.csv", a *subset* of the data in the [College Scorecard](https://collegescorecard.ed.gov/data/) database as of April 25, 2023. The data contain information on undergraduate college cohorts in the United States. The data dictionary is in the `data` folder. The variables include:
+
+-   `UNITID` and `OPEID`: Identifiers for the colleges.
+-   `INSTNM`: Institution name
+-   `ADM_RATE`: The Admission Rate.
+-   `SAT_AVE`: Average SAT equivalent score of students admitted.
+-   `COSTT4_A`: Average cost of attendance (academic year institutions)
+-   `AVGFACSAL`: Average faculty salary
+-   `GRAD_DEBT_MDN`: The median debt for students who have completed
+-   `AGE_ENTRY`: Average age of entry
+-   `ICLEVEL`: Level of institution (1 = 4-year, 2 = 2-year, 3 = less than 2-year).
+-   `MN_EARN_WNE_P10`: Mean earnings of students working and not enrolled 10 years after entry.
+-   `MD_EARN_WNE_P10`: Median earnings of students working and not enrolled 10 years after entry.
+-   `FEMALE`: Percentage of female students
+-   `UGDS`: Enrollment of undergraduate certificate/degree-seeking students
+-   `UGDS_MEN`: Percent of male undergraduates
+-   `UGDS_WOMEN`: Percent of female undergraduates
+-   `UGDS_WHITE`: Percent of White undergraduates
+-   `UGDS_BLACK`: Percent of Black undergraduates
+-   `UGDS_ASIAN`: Percent of Asian undergraduates
+-   `UGDS_HISP`: Percent of Hispanic undergraduates
+-   `UGDS_AIAN`: Percent of American Indian/Alaska Native undergraduates
+-   `UGDS_NHPI`: Percent of Native Hawaiian/Pacific Islander undergraduates
+
+1.  Load the data.
+    1.  Use a relative path and one call to a {readr} function to load the file `college_scorecard_extract_2023-04-25_UG.csv` and save the resulting tibble. Note, this data uses "NULL" instead of `NA`. As part of loading the data, use an argument of the {readr} function you chose to convert "NULL" to `NA`. Do not not suppress messages or warnings.
+    2.  Use `glimpse()` to examine the data.
+
+
+2.  If you used the default settings for reading in the data, multiple variables are probably type/class character when the data suggests they should be numeric.
+    1.  Which ones are they?
+    2.  Look at the data. Why were these columns read in as type character instead of double?
+
+
+3.  Reload the data with a {readr} function and use an argument to convert the offending entries to `NA` so the variables are automatically read in as type double. You should have 31 variables of type double.
+
+
+4.  How is average faculty salary associated with the mean earnings of students ten years after initial enrollment?
+
+-   Use {ggplot2} to create an appropriate plot to assess for a relationship (with `AVGFACSAL` as the explanatory X variable), while using a {ggplot2} function argument to reduce over-plotting and adding the default smoother with `se = FALSE` and faceting on `ICLEVEL`.
+    1.  Explain why {ggplot2} chose the smoothing method.
+    2.  Interpret the plots about the potential relationship.
+    3.  Why is there no `ICLEVEL` 3 plot or if there is a plot why is there no data in the `ICLEVEL` 3 plot?
+
+
+-   Use `lm()` to run a linear model of the relationship **for only those schools with ICLEVEL 1** and save the results.
+    1.  Interpret the results of the model based on the $p$ value and adjusted $r$-squared value.
+    2.  Given the adjusted $r$-squared value, what might you recommend to try to better predict average earnings of students ten years after initial enrollment at ICLEVEL 1 schools?
+
+
+
+5.  Does the level of the institution seem to be associated with the mean earnings of students ten years after enrollment?
+
+    1.  Reproduce this plot using {ggplot2} to explore this relationship.
+        -   Use the `ggthemes::theme_fivethirtyeight()` and a chunk option to set the figure width at 7.
+    2.  Interpret the plot.
+
+
+
+-   Use `aov()` to test if all of the institution levels have the same true mean of logged mean earnings of students ten years after enrollment.
+    1.  Why would we look at the log of mean earnings instead of the un-logged values?
+    2.  Use `broom::tidy()` to show the results.
+    3.  Interpret the results
+
+
+
+6.  Use {ggplot2} to recreate the plots below.
+
+- After each plot, pose the question you think the plot might answer and interpret the plot to answer the question. What are the implications for school admissions policies? Are these plots sufficient or are they too simplistic?
+- Which are the ethical implications of using either the linear smoother or the non-linear smoother in these plots to "prove a point"? Which would you recommend and why? You may want to look at the data to see which types of schools are on the extreme values for the percentages.
+- Run a linear model for the second plot and interpret the results compared to the plot.
+- Extra Credit: Add a point colored red for American University and a point colored green for the Massachusetts Institute of Technology in the second plot such that the points automatically adjust with new data.
+- Hint: For the first plot, consider what shape the data should be in to generate the plot.
+
+
+
+
+
+7.  Create a single scatter plot of the mean earnings 10 years after enrollment (Y axis) compared to the median earnings 10 years after enrollment (X axis) with the following attributes:
+    1.  Add a 45-degree red abline (the default).
+    2.  Facet on the level of institutions. 
+    3.  Attempt to reduce effects of over-plotting.
+    4.  Interpret the plot **considering the abline**.
+
+
+
+
+
+# World Bank Data
+
+The World Bank provides loans to countries with the goal of reducing poverty. The data frames in the data folder were taken from the public data repositories of the [World Bank](https://data.worldbank.org/).
+
+-   `country_2021.csv`: Contains information on the countries in the data set. Also includes totals for the regions (sets of countries) and the world. The variables are:
+    -   `Country_Code`: A three-letter code for the country. Note not all rows are countries; There are rows for the regions and for the world.
+    -   `Region`: The region of the country. **Take note: Region is `NA` for the individual regions and for the world.**
+    -   `IncomeGroup`: Either `"High income"`, `"Upper middle income"`, `"Lower middle income"`, or `"Low income"`. Take note: Region is `NA` for the individual regions and for the world.
+    -   `TableName`: The full name of the country or region.
+    -   `Special Notes`: Notes about the country or region
+-   `fertility_rate_2020.csv`: Contains the fertility rate information for each country, each region, and the world for each year.
+    -   For the variables `1960` to `2020`, the values in the cells represent the fertility rate in total births per woman for that year.
+    -   Total fertility rate represents the number of children that would be born to a woman if she were to live to the end of her childbearing years and bear children in accordance with age-specific fertility rates of the specified year.
+-   `life_expectancy_2020.csv`: Contains the life expectancy information for each country, each region, and the world for each year.
+    -   For the variables `1960` to `2020`, the values in the cells represent life expectancy at birth in years for the given year.
+    -   Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
+-   `population_2021.csv`: Contains the population information for each country, each region, and the world for the year.
+    -   For the variables `1960` to `2021`, the values in the cells represent the total population in number of people for the given year.
+    -   Total population is based on the *de facto* definition of population, which counts all residents regardless of legal status or citizenship. The values shown are mid-year estimates.
+
+1.  Use a relative path and a {readr} function to load each of these four files into its own tibble. *Be sure to look at the data after loading to ensure it loaded as expected and fix using a {readr} function argument if not.*
+
+
+2.  These data are messy. The observational units in `fert`, `life`, and `pop` are locations in space-time (e.g., Aruba in 2020). Recall that "tidy" data should have one observational unit per row.
+
+- Using only two function calls for each data frame, tidy each data frame to have only four variables by:
+
+    1.  Removing the `Indicator Name` and `Indicator Code` columns.
+    2.  Using a {tidyr} function to tidy the tibble, and, by using an argument of the function, ensure the variable for `year` is a numeric.
+    3.  Save the tidy tibble to a new name.
+
+
+
+3.  Combine tibbles.
+    1.  Using a {dplyr} function, *join* the three tidy tibbles into one tibble, one after the other. 
+        - Then use a {dplyr} function to join the data from the country tibble while removing any rows that have no data in country. 
+        - The new tibble should have 16430 observations (rows) for 10 variables.
+    2.  Save the resulting tibble to a new name. 
+        - It should include the fertility rate, population, and life expectancy in each year as well as the `Region`, `IncomeGroup`, `TableName`, and `SpecialNotes` for each country.
+    3.  Identify the distinct values for the two columns of `Country Name` and `TableName` where they do not match each other. 
+        - There should be nine. What do you notice about them?
+
+
+
+4.  Make a single scatterplot with the following attributes:
+    1.  Show fertility rate (Y) vs life expectancy (X),
+    2.  Color-code by region and indicate population by size.
+    3.  Include only the years 1960, 1980, 2000, and 2020.
+    4.  Facet by these years.
+    5.  Your final plot should look like the below with `scale_color_viridis_d()` (Each element of the formatting is graded):
+    6.  **Interpret the plot in one sentence**.
+
+
+
+5.  Regional Population
+    1.  Calculate the total population for each region for each year.
+    2.  Make a line plot of total population (Y) versus year (X), color-coding by region and using a *log scale* for Y.
+    3.  Your final plot should look like the below using (`ggthemes::scale_color_colorblind`).
+    4.  **Interpret the plot in one sentence to identify the two fastest growing regions**.
+
+
+
+
+6.  Make a box plot of the percentage population growth for the countries from 1960 to 2020 (the population in 2020 compared to 1960) with the following attributes.
+    1.  Use code to automatically order the Regions on the $y$-axis in **increasing** order of Region's total 1960 population.
+    2.  For any countries with negative growth, set it to .001.
+    3.  Add a red line at 100%.
+    4.  Your final plot should look like the one below:
+    5.  **Interpret the plot in one sentence to compare the percentage growth with the previous plot.**
+
+
