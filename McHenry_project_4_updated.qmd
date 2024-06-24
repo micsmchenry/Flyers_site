@@ -1,8 +1,6 @@
 ---
-R.---
 title: "Will the Philadelphia Flyers Fly High in 2023-2024?"
 format: html
-editor: visual
 ---
 
 ```{r}
